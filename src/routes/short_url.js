@@ -19,8 +19,7 @@ export async function post({body}){
             const {count} = await supabase.from('url_list').select('*').eq('short_slug',random_slug)
             if(count==null){
                 unique = true
-                const { data, error } = await supabase.from('url_list').insert([{ url, short_slug:random_slug }])
-                console.log(23,data,error)
+                await supabase.from('url_list').insert([{ url, short_slug:random_slug }])
             }
         }   
     }else{

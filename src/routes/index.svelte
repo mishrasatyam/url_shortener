@@ -1,5 +1,5 @@
 <script>
-    import {host} from '$lib/utils'
+    import {page} from '$app/stores'
     let full_url,message
     let form_submitted = false
     async function handleSubmit(){
@@ -11,7 +11,7 @@
         const body = JSON.stringify({url:full_url})
         const res = await fetch(url,{method,body,headers})
         const data = await res.json()
-        message = `${host}/${data.short_slug}  =>  ${full_url}`
+        message = `${$page.host}/${data.short_slug}  =>  ${full_url}`
         form_submitted = false
     }
 </script>
