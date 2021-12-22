@@ -25,7 +25,7 @@
         </div>
     {:else}
         <form on:submit|preventDefault={handleSubmit} class="mx-10 block mt-20">
-            <input type="url" class="shadow-lg rounded-lg w-full p-4 shadow-gray-300" placeholder="Write url" bind:value={full_url}>
+            <input type="url" class="shadow-lg rounded-lg w-full p-4 shadow-gray-300" placeholder="Write url" bind:value={full_url} required>
             <div class="text-center mt-5">
                 {#if form_submitted}
                 <button type="button" class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
