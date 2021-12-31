@@ -1,5 +1,6 @@
 <script>
     import {page} from '$app/stores'
+    import CopyIcon from '$lib/Copy_icon.svelte'
     let full_url,message
     let form_submitted = false
     async function handleSubmit(){
@@ -11,17 +12,25 @@
         const body = JSON.stringify({url:full_url})
         const res = await fetch(url,{method,body,headers})
         const data = await res.json()
-        message = `${$page.host}/${data.short_slug}  =>  ${full_url}`
+        message = {short_url:`${$page.host}/${data.short_slug}` , full_url:`${full_url}`}
         form_submitted = false
     }
+    let text_copied = false
 </script>
 <div class="mx-auto">
-    <div class="shadow-lg rounded-lg">
+    <div class="shadow-lg  bg-gradient-to-r from-purple-600 to-cyan-500">
         <header class="p-3 font-bold text-2xl mb-10 text-gray-300">Babyurl.in</header>
     </div>
     {#if message}
-        <div class="shadow-lg rounded-lg p-4 text-center mx-10">
-            <h3 class="p-4 font-semibold text-gray-200">{message}</h3>
+        <div class="bg-sky-100 shadow-lg rounded-lg p-4 text-center mx-10  text-blue-600 font-bold flex flex-col">
+            {#if text_copied}
+                <h7 class="text-stone-400 text-xs text-right">Copied!</h7>
+            {:else}
+                <i style="text-align: -webkit-right;" on:click={()=>{navigator.clipboard.writeText(message.short_url);text_copied=true}}><CopyIcon/></i>
+            {/if}
+            <a href="{message.full_url}" class="block">{message.full_url}</a>
+            <h5 class="text-black">can be reached at</h5>
+            <a class="underline" href="{message.short_url}">{message.short_url} </a> 
         </div>
     {:else}
         <form on:submit|preventDefault={handleSubmit} class="mx-10 block mt-20">
@@ -36,7 +45,7 @@
                     Processing...
                   </button>      
                 {:else}
-                    <button type="submit" class="shadow-lg rounded-lg px-5 py-2.5 bg-blue-600 text-white shadow-blue-200 hover:bg-blue-500">Submit</button>
+                    <button type="submit" class="shadow-lg rounded-lg px-5 py-2.5 bg-blue-600 text-white shadow-blue-200 hover:bg-blue-500 hover:shadow-blue-400">Submit</button>
                 {/if}
             </div>    
         </form>
