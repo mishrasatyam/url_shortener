@@ -1,9 +1,9 @@
 <script context="module">
-    export async function load({page, fetch}){
+    export async function load({params, fetch}){
         const url = '/slug_to_url'
         const method = 'POST'
         const headers = {'content-type':'application/json'}
-        const body = JSON.stringify({short_slug: page.params.slug})
+        const body = JSON.stringify({short_slug: params.slug})
         const res = await fetch(url,{method,body,headers})
         const data = await res.json()
         if(res.status==401){

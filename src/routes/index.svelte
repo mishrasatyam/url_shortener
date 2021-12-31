@@ -12,7 +12,7 @@
         const body = JSON.stringify({url:full_url})
         const res = await fetch(url,{method,body,headers})
         const data = await res.json()
-        message = {short_url:`${$page.host}/${data.short_slug}` , full_url:`${full_url}`}
+        message = {short_url:`${$page.url.origin}/${data.short_slug}` , full_url:`${full_url}`}
         form_submitted = false
     }
     let text_copied = false
