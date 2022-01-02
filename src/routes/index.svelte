@@ -18,15 +18,13 @@
     let text_copied = false
 </script>
 <div class="mx-auto">
-    <div class="shadow-lg  bg-gradient-to-r from-purple-600 to-cyan-500">
-        <header class="p-3 font-bold text-2xl mb-10 text-gray-300">Babyurl.in</header>
-    </div>
+    
     {#if message}
         <div class="bg-sky-100 shadow-lg rounded-lg p-4 text-center mx-10  text-blue-600 font-bold flex flex-col">
             {#if text_copied}
                 <h7 class="text-stone-400 text-xs text-right">Copied!</h7>
             {:else}
-                <i style="text-align: -webkit-right;" on:click={()=>{navigator.clipboard.writeText(message.short_url);text_copied=true}}><CopyIcon/></i>
+                <i class="cursor-pointer" style="text-align: -webkit-right;" on:click={()=>{navigator.clipboard.writeText(message.short_url);text_copied=true}}><CopyIcon/></i>
             {/if}
             <a href="{message.full_url}" class="block">{message.full_url}</a>
             <h5 class="text-black">can be reached at</h5>
