@@ -1,8 +1,7 @@
-import { createClient } from '@supabase/supabase-js'
-import {SUPABASE_URL, SUPABASE_ANON_KEY} from '$lib/utils'
-
-export async function post({body}){
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+/** @type {import('@sveltejs/kit').RequestHandler} */
+export async function post({request,locals}){
+    const supabase = locals.db
+    const body = await request.json()
     const {short_slug} = body
     const {data,error} = await supabase.from('url_list').select('*').eq('short_slug',short_slug)
     if(data.length==0){

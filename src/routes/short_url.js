@@ -1,14 +1,11 @@
 import {randomUUID as uuid} from 'crypto'
-import { createClient } from '@supabase/supabase-js'
-import {SUPABASE_URL, SUPABASE_ANON_KEY} from '$lib/utils'
 
-
-export async function post({body}){
-    // Initialize the JS client
-    
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+/** @type {import('@sveltejs/kit').RequestHandler} */
+export async function post({request,locals}){
+    const supabase = locals.db
     // Make a request
     let url_exists = false
+    const body = await request.json()
     const {url} = body
     const {data,error} = await supabase.from('url_list').select('*').eq('url',url)
     let random_slug
