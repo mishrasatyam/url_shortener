@@ -20,7 +20,7 @@
 <div class="mx-auto">
     
     {#if message}
-        <div class="bg-sky-100 shadow-lg rounded-lg p-4 text-center mx-10  text-blue-600 font-bold flex flex-col">
+        <div class="bg-sky-100 dark:bg-slate-500 shadow-lg rounded-lg p-4 text-center mx-10  text-blue-500 dark:text-blue-300 font-bold flex flex-col">
             {#if text_copied}
                 <h7 class="text-stone-400 text-xs text-right">Copied!</h7>
             {:else}
@@ -28,11 +28,11 @@
             {/if}
             <a href="{message.full_url}" class="block">{message.full_url}</a>
             <h5 class="text-black">can be reached at</h5>
-            <a class="underline" href="{message.short_url}">{message.short_url} </a> 
+            <a class="underline" rel="external" href="{message.short_url}">{message.short_url} </a> 
         </div>
     {:else}
-        <form on:submit|preventDefault={handleSubmit} class="mx-10 block mt-20">
-            <input type="url" class="shadow-lg rounded-lg w-full p-4 shadow-gray-300 focus:outline-none focus:shadow-gray-500" placeholder="Write url" bind:value={full_url} required>
+        <form on:submit|preventDefault={handleSubmit} class="mx-10 block mt-20 sm:mt-40 sm:mx-20">
+            <input type="url" class="shadow-lg rounded-lg w-full p-4 shadow-gray-300 focus:outline-none focus:shadow-orange-400 dark:bg-slate-400 dark:placeholder-slate-200" placeholder="Write url" bind:value={full_url} required>
             <div class="text-center mt-5">
                 {#if form_submitted}
                 <button type="button" class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
@@ -43,7 +43,7 @@
                     Processing...
                   </button>      
                 {:else}
-                    <button type="submit" class="shadow-lg rounded-lg px-5 py-2.5 bg-blue-600 text-white shadow-blue-200 hover:bg-blue-500 hover:shadow-blue-400">Submit</button>
+                    <button type="submit" class="shadow-lg rounded-lg px-5 py-2.5 bg-blue-600 text-white  hover:bg-blue-500 hover:shadow-blue-400">Submit</button>
                 {/if}
             </div>    
         </form>
