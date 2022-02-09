@@ -20,6 +20,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@supabase/supabase-js": "^1.30.0"
+    "mongodb": "^4.3.1"
   }
 }
