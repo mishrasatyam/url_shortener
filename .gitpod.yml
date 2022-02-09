@@ -2,12 +2,13 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name : Dev
-    before: npm i -g pnpm
-    init: pnpm i && npm run build
-    command: pnpm dev
   - name: Run db
     command : mkdir -p /workspace/data && mongod --dbpath /workspace/data
+  - name : Dev
+    before: npm i -g pnpm
+    init: pnpm i
+    command: pnpm dev
+  
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
