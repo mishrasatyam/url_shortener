@@ -1,5 +1,5 @@
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({params}){
+export async function get({params,locals}){
     const supabase = locals.db
     const {slug} = params
     const {data,error} = await supabase.from('url_list').select('*').eq('short_slug',slug)
